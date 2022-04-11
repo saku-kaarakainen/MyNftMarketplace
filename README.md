@@ -16,3 +16,12 @@ I followed pretty much the tutorials of Dapp University.
   - react-router-dom@6
   - ipfs-http-client@56.0.1
   - @openzeppelin/contracts@4.5.0
+
+
+# Notes to myself
+ - to run the deploy script:
+ >npx hardhat run src/backend/scripts/deploy.js --network localhost
+
+ - get the deployed contract
+ >npx hardhat console
+ > const contract = await ethers.getContractAt("NFT", {contract address copied from the deployed script});
