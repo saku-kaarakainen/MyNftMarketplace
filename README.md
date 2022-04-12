@@ -16,7 +16,7 @@ I followed pretty much the tutorials of Dapp University.
   - react-router-dom@6
   - ipfs-http-client@56.0.1
   - @openzeppelin/contracts@4.5.0
-
+  - chai@latest 
 
 # Notes to myself
 - to run nodes to connect
@@ -27,9 +27,17 @@ I followed pretty much the tutorials of Dapp University.
 
  - get the deployed contract
 >npx hardhat console --network localhost
->const contractAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3"; # Note this can change, you need to check this from the hardhat node console.
->const contract = await ethers.getContractAt("NFT", contractAddress);
+>const contractAddressNFT = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
+>const contractAddressMarketplace = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0";
+>const nftContract = await ethers.getContractAt("NFT", contractAddressNFT);
+>const contractMarketplace = await ethers.getContractAt("Marketplace", contractAddressMarketplace);
 ># Now you can investigate your contract, for example with the following scripts
->const tokenCount = await contract.tokenCount() 
->const name = await contract.name()
->const symbol = await contract.symbol() 
+>const tokenCount = await nftContract.tokenCount() 
+>const name = await nftContract.name()
+>const symbol = await nftContract.symbol() 
+>const feePercent = await contractMarketplace.feePercent();
+>const feeAccount = await contractMarketplace.feeAccount();
+
+## Tests
+- to run the tests
+>npx hardhat test

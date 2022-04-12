@@ -31,7 +31,7 @@ contract Marketplace is ReentrancyGuard {
   mapping(uint => Item) items;
 
   constructor(uint _feePercentage) {
-    feeAccount = payable(msg.sender);
+    feeAccount = payable(msg.sender); // sender casted as payable
     feePercent = _feePercentage;
   }
 
