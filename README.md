@@ -6,10 +6,8 @@ The contracts are deployed so far in Ropsten network, so please don't use real m
  - [Marketplace Contract at Ropsten](https://ropsten.etherscan.io/address/0x9AcFaD8f813f3b103D679522C7Fd05ab2D0f1B31) 
 
 ## Dependencies
+- MetaMask browser extension 
 - Node.js (v16.14.2)
-- (npm)
-- MetaMask browser extension
-- dapp university's [starter kit 2](https://github.com/dappuniversity/starter_kit_2)
 - NPM packagets
   - react-router-dom@6
   - hardhat@2.8.4
