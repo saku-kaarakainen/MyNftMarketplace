@@ -13,7 +13,7 @@ contract Marketplace is ReentrancyGuard {
   uint public immutable feePercent; // The fee percentage on sales
   uint public itemCount;
 
-  struct Item {
+  struct Item{
     uint itemId;
     IERC721 nft; // https://docs.openzeppelin.com/contracts/2.x/api/token/erc721#ERC721
     uint tokenId;
@@ -30,6 +30,15 @@ contract Marketplace is ReentrancyGuard {
     address indexed seller
   );
 
+  event Bought(
+    uint itemId,
+    address indexed nft,
+    uint tokenId,
+    uint price,
+    address indexed seller,
+    address indexed buyer
+  );
+
   // itemId -> Item
   mapping(uint => Item) public items;
 
@@ -42,31 +51,48 @@ contract Marketplace is ReentrancyGuard {
   // >Prevents a contract from calling itself, directly or indirectly. Calling a nonReentrant function from another nonReentrant function is not supported. 
   // >It is possible to prevent this from happening by making the nonReentrant function external, and make it call a private function that does the actual work.
   function makeItem(IERC721 _nft, uint _tokenId, uint _price) external nonReentrant {
-    console.log("Marketplace.sol, function makeItem(): Stepped in");
-    // console.log("IERC721 _nft", _nft);
-    console.log("IERC721 _tokenId", _tokenId);
-    console.log("IERC721 _price", _price);
-
     require(_price > 0, 'Price must be greater than zero');
     
     itemCount++;
-
-    console.log("Marketplace.sol, function makeItem: ItemCount:", itemCount);
 
     // transfer NFT
     _nft.transferFrom(msg.sender, address(this), _tokenId);
 
     // Add new item to items mapping
     items[itemCount] = Item (
-      itemCount,
-      _nft,
-      _tokenId,
+      itemCount, 
+      _nft, 
+      _tokenId, 
       _price,
-      payable(msg.sender),
+      payable(msg.sender), // Seller
       false
     );
 
     // emit Offeret event
     emit Offered(itemCount, address(_nft), _tokenId, _price, msg.sender);
+  }
+
+  function purchaseItem(uint _itemId) external payable nonReentrant {
+    uint _totalPrice = getTotalPrice(_itemId);
+    Item storage item = items[_itemId]; // storage keyword because it's directly from storage and won't create a memory copy of the item.
+    require(_itemId > 0 && _itemId <= itemCount, "The item doesn't exist");
+    require(msg.value >= _totalPrice, "Not enought ether to conver item price and market fee");
+    require(!item.sold, "item already sold!");
+    // pay seller and feeAccount
+    item.seller.transfer(item.price);
+    feeAccount.transfer(_totalPrice - item.price);
+
+    // update item to sold
+    item.sold = true;
+
+    // transfer NFT to buyer
+    item.nft.transferFrom(address(this), msg.sender, item.tokenId);
+
+    // Emit Bought event
+    emit Bought(_itemId, address(item.nft), item.tokenId, item.price, item.seller, msg.sender);
+  }
+
+  function getTotalPrice(uint _itemId) view public returns(uint) {
+    return (items[_itemId].price*(100 + feePercent)/100);
   }
 }

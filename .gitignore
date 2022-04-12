@@ -31,3 +31,7 @@ typechain
 #Hardhat files
 cache
 artifacts
+
+#Files that might contain secrets
+hardhat.config.js
+/src # in normal case I would not hide the source, but i don't want people copy paste my app that I made with sweat and tears :(

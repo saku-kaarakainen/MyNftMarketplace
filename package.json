@@ -1,6 +1,7 @@
 {
-  "name": "starter_kit",
+  "name": "MyNftMarketplace",
   "version": "0.2.0",
+  "homepage": "https://saku-kaarakainen.github.io/MyNftMarketplace",
   "private": false,
   "dependencies": {
     "@babel/preset-react": "^7.16.7",
@@ -23,7 +24,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "deploy": "npx hardhat run src/backend/scripts/deploy.js --network localhost",
+    "deploy-backend": "npx hardhat run contracts/scripts/deploy.js --network localhost",
+    "predeploy": "npm run build",
+    "deploy-frontend": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -49,6 +52,8 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",
+    "chai-almost": "^1.0.1",
+    "gh-pages": "^3.2.3",
     "hardhat": "^2.8.4"
   }
 }

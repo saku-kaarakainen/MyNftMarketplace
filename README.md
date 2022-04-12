@@ -1,10 +1,6 @@
 # MyNftMarketplace
 Me trying to make my own nft market place
 
-
-# How did I do this?
-I followed pretty much the tutorials of Dapp University.
-
 ## Dependencies
 - Node.js (v16.14.2)
 - (npm)
@@ -22,8 +18,9 @@ I followed pretty much the tutorials of Dapp University.
 - to run nodes to connect
 >npx hardhat node 
 
- - to run the deploy script:
- >npx hardhat run src/backend/scripts/deploy.js --network localhost
+ ## Deploy to run the deploy script:
+>npx hardhat run contracts/scripts/deploy.js --network localhost 
+>npx hardhat run contracts/scripts/deploy.js --network ropsten 
 
  - get the deployed contract
 >npx hardhat console --network localhost
@@ -46,10 +43,30 @@ I followed pretty much the tutorials of Dapp University.
 ># first, import console.log
 >import "hardhat/console.sol";
 
-# then, log things you wanted 
+## then, log things you wanted 
 >>https://remix-ide.readthedocs.io/en/latest/%5C/hardhat_console.html
 >function myContractFunction() {
 >  console.log("Hello, world!");
 >}
 
->1h08m08s
+
+## MetaMask configurations
+-Add new network
+>Network Name: Hardhat Node
+>RPC URL: http://127.0.0.1:8545
+>Chain ID: 31337
+
+-Import account
+Use the private key of account #0
+
+
+
+
+## Deploying
+## Ropsten
+npx hardhat run src/backend/scripts/deploy.js --network ropsten 
+NFT contract address 0x145b9a4146f75ab5C2f76F4B038469786F7629f3
+Marketplace contract address 0x9AcFaD8f813f3b103D679522C7Fd05ab2D0f1B31
+
+### NOTES 
+For gith
