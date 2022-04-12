@@ -55,5 +55,8 @@ contract Marketplace is ReentrancyGuard {
       payable(msg.sender),
       false
     );
+
+    // emit Offeret event
+    emit Offered(itemCount, address(_nft), _tokenId, _price, msg.sender);
   }
 }
