@@ -27,7 +27,7 @@
     "deploy-backend": "npx hardhat run contracts/scripts/deploy.js --network localhost",
     "predeploy": "npm run build",
     "deploy-frontend": "gh-pages -d build",
-    "start": "react-scripts start",
+    "start": "react-scripts start ",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
