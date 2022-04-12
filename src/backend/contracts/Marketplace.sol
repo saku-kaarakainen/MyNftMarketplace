@@ -4,6 +4,9 @@ pragma solidity ^0.8.4;
 import '@openzeppelin/contracts/token/ERC721/IERC721.sol';
 import '@openzeppelin/contracts/security/ReentrancyGuard.sol';
 
+// TODO: Remove this, when you don't need this anymore
+import "hardhat/console.sol";
+
 contract Marketplace is ReentrancyGuard {
   // State variables
   address payable public immutable feeAccount;  // The account that receives the fees
@@ -39,9 +42,16 @@ contract Marketplace is ReentrancyGuard {
   // >Prevents a contract from calling itself, directly or indirectly. Calling a nonReentrant function from another nonReentrant function is not supported. 
   // >It is possible to prevent this from happening by making the nonReentrant function external, and make it call a private function that does the actual work.
   function makeItem(IERC721 _nft, uint _tokenId, uint _price) external nonReentrant {
+    console.log("Marketplace.sol, function makeItem(): Stepped in");
+    // console.log("IERC721 _nft", _nft);
+    console.log("IERC721 _tokenId", _tokenId);
+    console.log("IERC721 _price", _price);
+
     require(_price > 0, 'Price must be greater than zero');
     
     itemCount++;
+
+    console.log("Marketplace.sol, function makeItem: ItemCount:", itemCount);
 
     // transfer NFT
     _nft.transferFrom(msg.sender, address(this), _tokenId);

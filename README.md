@@ -41,4 +41,15 @@ I followed pretty much the tutorials of Dapp University.
 ## Tests
 - to run the tests
 >npx hardhat test
+
+- to log inside the contract
+># first, import console.log
+>import "hardhat/console.sol";
+
+# then, log things you wanted 
+>>https://remix-ide.readthedocs.io/en/latest/%5C/hardhat_console.html
+>function myContractFunction() {
+>  console.log("Hello, world!");
+>}
+
 >1h08m08s
