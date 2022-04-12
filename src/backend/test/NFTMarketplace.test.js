@@ -74,7 +74,12 @@ describe("NFTMarketplace", function () {
         expect(await marketplace.itemCount()).to.equal(1)
 
         // Get item from items mapping, then check fields to ensure they are correct
-        const item = await marketplace.items(1)
+        const item = await marketplace.items[1]
+
+        console.log("got the item from the marketplace:")
+        console.log(item)
+
+
         expect((item.itemId)).to.equal(1)
         expect((item.nft)).to.equal(nft.address)
         expect((item.tokenId)).to.equal()

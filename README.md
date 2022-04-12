@@ -41,3 +41,4 @@ I followed pretty much the tutorials of Dapp University.
 ## Tests
 - to run the tests
 >npx hardhat test
+>1h08m08s
