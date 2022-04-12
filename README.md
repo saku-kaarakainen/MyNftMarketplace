@@ -19,9 +19,17 @@ I followed pretty much the tutorials of Dapp University.
 
 
 # Notes to myself
+- to run nodes to connect
+>npx hardhat node 
+
  - to run the deploy script:
  >npx hardhat run src/backend/scripts/deploy.js --network localhost
 
  - get the deployed contract
- >npx hardhat console
- > const contract = await ethers.getContractAt("NFT", {contract address copied from the deployed script});
+>npx hardhat console --network localhost
+>const contractAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3"; # Note this can change, you need to check this from the hardhat node console.
+>const contract = await ethers.getContractAt("NFT", contractAddress);
+># Now you can investigate your contract, for example with the following scripts
+>const tokenCount = await contract.tokenCount() 
+>const name = await contract.name()
+>const symbol = await contract.symbol() 

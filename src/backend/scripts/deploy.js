@@ -12,7 +12,7 @@ async function main() {
   const nft = await nftFactory.deploy();
 
   // For each contract, pass the deployed contract and name to this function to save a copy of the contract ABI and address to the front end.
-  saveFrontendFiles(nft, "NFT ");
+  saveFrontendFiles(nft, "NFT");
 }
 
 function saveFrontendFiles(contract, name) {
