@@ -20,27 +20,30 @@ async function main(args) {
   console.log("Marketplace contract address", marketplace.address);
 
   // For each contract, pass the deployed contract and name to this function to save a copy of the contract ABI and address to the front end.
-  saveFrontendFiles(nft, "NFT");
-  saveFrontendFiles(marketplace, "Marketplace");
+  saveFrontendFiles(nft,          "NFT",          `${__dirname}/../../src/contractsData/${network}/`);
+  saveFrontendFiles(marketplace,  "Marketplace",  `${__dirname}/../../src/contractsData/${network}/`);
+
+  // In order to serve them in github pages
+  saveFrontendFiles(nft,          "NFT",          `${__dirname}/../../build/contractsData/${network}/`);
+  saveFrontendFiles(marketplace,  "Marketplace",  `${__dirname}/../../build/contractsData/${network}/`);
 }
 
-function saveFrontendFiles(contract, name) {
+function saveFrontendFiles(contract, name, directory) {
   const fs = require("fs");
-  const contractsDir = `${__dirname}/../../src/contractsData/${network}/`;
 
-  if (!fs.existsSync(contractsDir)) {
-    fs.mkdirSync(contractsDir);
+  if (!fs.existsSync(directory)) {
+    fs.mkdirSync(directory);
   }
 
   fs.writeFileSync(
-    contractsDir + `/${name}-address.json`,
+    directory + `/${name}-address.json`,
     JSON.stringify({ address: contract.address }, undefined, 2)
   );
 
   const contractArtifact = artifacts.readArtifactSync(name);
 
   fs.writeFileSync(
-    contractsDir + `/${name}.json`,
+    directory + `/${name}.json`,
     JSON.stringify(contractArtifact, null, 2)
   );
 }
