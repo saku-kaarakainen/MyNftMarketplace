@@ -3,13 +3,8 @@ Me trying to make my own nft market place. This repository contains the contract
 
 I've deployed the contracts two times in the Ropsten network. So don't use real ETH.
 Contracts that are currently in use.
- - [NFT Contract at Ropsten](https://ropsten.etherscan.io/address/0xFEc8fE4d11D9Ab94915388326A074EEc3a79FbB6) 
- - [Marketplace Contract at Ropsten](https://ropsten.etherscan.io/address/0xE507c2E385A62A14118A63B194b3Ae9AF2623d0F) 
-
-
-Contracts deployed first time (They should be identical than original contracts)
- - [(old) NFT Contract at Ropsten](https://ropsten.etherscan.io/address/0x145b9a4146f75ab5C2f76F4B038469786F7629f3) 
- - [(old) Marketplace Contract at Ropsten](https://ropsten.etherscan.io/address/0x9AcFaD8f813f3b103D679522C7Fd05ab2D0f1B31) 
+ - [NFT Contract at Ropsten](https://ropsten.etherscan.io/address/0xFcb57A8dA873d0d740fFeF6237CEfbD1D5e74dad) 
+ - [Marketplace Contract at Ropsten](https://ropsten.etherscan.io/address/0xa01F9dFb5e1b1A2D8A3405c861e3d2800130D7C7) 
 
 ## Dependencies
 - MetaMask browser extension 
