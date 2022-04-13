@@ -20,12 +20,8 @@ async function main(args) {
   console.log("Marketplace contract address", marketplace.address);
 
   // For each contract, pass the deployed contract and name to this function to save a copy of the contract ABI and address to the front end.
-  saveFrontendFiles(nft,          "NFT",          `${__dirname}/../../src/contractsData/${network}/`);
-  saveFrontendFiles(marketplace,  "Marketplace",  `${__dirname}/../../src/contractsData/${network}/`);
-
-  // In order to serve them in github pages
-  saveFrontendFiles(nft,          "NFT",          `${__dirname}/../../build/contractsData/${network}/`);
-  saveFrontendFiles(marketplace,  "Marketplace",  `${__dirname}/../../build/contractsData/${network}/`);
+  saveFrontendFiles(nft,          "NFT",          `${__dirname}/../data/${network}/`);
+  saveFrontendFiles(marketplace,  "Marketplace",  `${__dirname}/../data/${network}/`);
 }
 
 function saveFrontendFiles(contract, name, directory) {
