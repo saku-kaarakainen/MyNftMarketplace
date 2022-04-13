@@ -1,7 +1,9 @@
 const { ethers } = require("hardhat");
 
-async function main() {
+const _args = parseArguments(process.env.npm_lifecycle_script)
+const network = _args[1]
 
+async function main(args) {
   const [deployer] = await ethers.getSigners();
 
   console.log("Deploying contracts with the account:", deployer.address);
@@ -24,7 +26,7 @@ async function main() {
 
 function saveFrontendFiles(contract, name) {
   const fs = require("fs");
-  const contractsDir = __dirname + "/../../src/contractsData";
+  const contractsDir = `${__dirname}/../../src/contractsData/${network}/`;
 
   if (!fs.existsSync(contractsDir)) {
     fs.mkdirSync(contractsDir);
@@ -43,9 +45,23 @@ function saveFrontendFiles(contract, name) {
   );
 }
 
-main()
+main(_args)
   .then(() => process.exit(0))
   .catch(error => {
     console.error(error);
     process.exit(1);
   });
+
+function parseArguments(source) {
+  let args = source
+    .split(' ') //into an array
+      .map(str => str.replace(/(^"|"$)/g, '')) // remove quotes from beginning and end
+
+  // 0: hardhat
+  // 1: run
+  // 2: script source
+  //, the rest
+  args.splice(0, 3)
+
+  return args
+}
